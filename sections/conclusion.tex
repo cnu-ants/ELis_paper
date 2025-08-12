@@ -1,0 +1,12 @@
+\section{Conclusion}
+In this work, we investigated the transformation of emulation-style LLVM IR
+(EIR) into high-level LLVM IR (HIR) to combine the functional correctness of
+EIR with the analysis suitability of HIR. Our study focused on eliminating the
+virtual stack in BinRec-generated EIR while preserving the original program
+semantics. To achieve this, we proposed two approaches: (1) variable recovery
+using symbolic execution, and (2) type recovery using points-to graph analysis.
+In future work, we plan to extend our framework to recover array types,
+function structures, and other high-level constructs, thereby enabling complete
+removal of the virtual stack. The ultimate goal is to achieve analysis
+suitability comparable to that of high-level style IR, without sacrificing
+functional correctness.

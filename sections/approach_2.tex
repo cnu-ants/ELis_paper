@@ -1,0 +1,22 @@
+\section{Approach 2: Type recovery}
+Type recovery requires prior variable recovery. In BinRec, however, all type
+information is lost during lifting. This is because BinRec, when emulating the
+program’s behavior, assigns the same type (i32) to all variables, as the
+virtual stack itself is represented as i32.
+As noted earlier, in the lifted code there are explicit store operations. By
+analyzing these stores, we can infer the type of each variable based on the
+values assigned to it. For instance, if a variable of type i32 stores an i32
+value, it is treated as an integer variable. Conversely, if it stores the
+address of another variable, it is inferred to be a pointer.
+To systematically capture these relationships, we construct a points-to graph
+in which each edge encodes the target of a variable’s reference. For example,
+an i32 variable points to an i32 value, an i32* variable points to an i32
+variable, and if the reference is to a value rather than another variable, the
+node is treated as a leaf in the points-to graph. By analyzing the
+relationships in this graph, we recover the types of variables.
+This approach has limitations. Since BinRec supports only primitive types
+(e.g., i32, i8), it does not explicitly represent array types. In contrast,
+high-level IRs explicitly encode array types, making them easier to identify.
+In BinRec, distinguishing array types is non-trivial. As part of our future
+work, we plan to extend our variable relationship analysis to enable recovery
+of array types.

@@ -1,0 +1,65 @@
+\documentclass[sigplan,10pt]{acmart}
+
+\settopmatter{printfolios=true,printccs=false,printacmref=false}
+
+% minted 패키지 불러오기
+\usepackage{caption}
+\usepackage{minted}
+\captionsetup{compatibility=false} % minted 캡션 옵션 충돌 방지
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}   % 표 열 너비 조절용
+\usepackage{xcolor}  % 색상 지정용 (선택)
+\usepackage[skip=5pt]{caption}  % skip 값으로 caption과 표 간의 간격 조정
+\setlength{\belowcaptionskip}{0pt} % 표와 본문 간격 줄이기
+
+
+\begin{document}
+
+\title{Removing virtual stack in Emulation style LLVM-IR}
+
+\author{Yujin An}
+\affiliation{
+  \institution{Chungnam National University}
+  \country{Daejeon, South Korea}
+}
+\email{yujina@o.cnu.ac.kr}
+
+\author{Sungho Lee}
+\affiliation{
+  \institution{Chungnam National University}
+  \country{Daejeon, South Korea}
+}
+\email{eshaj@cnu.ac.kr}
+
+\begin{abstract}
+In recent years, static analysis of binary programs has attracted increasing
+attention, especially in situations where the source code is unavailable.
+Direct analysis of binaries, however, is challenging because much of the
+original program information is lost during compilation. Binary lifters, which
+translate binaries into an intermediate representation (IR), address this
+limitation and have gained popularity. Recent work has shown that modern
+lifters are capable of producing correct IR even for complex binaries.
+Studies have also examined how the characteristics of lifter-generated LLVM IR
+affect its applicability to different analysis tasks. Distinct styles of LLVM
+IR have been identified, including Emulation-style IR (EIR) and High-level IR
+(HIR). Experimental results show that HIR offers strong advantages for
+analysis, while EIR provides higher functional accuracy. Conversely, HIR tends
+to be weaker in preserving functionality, and EIR is less effective for certain
+analyses.
+This paper proposes a set of transformation rules to convert EIR into HIR, with
+the goal of combining the functional accuracy of EIR with the analysis
+advantages of HIR.
+\end{abstract}
+
+\maketitle
+
+\input{sections/introduction}
+\input{sections/approach_1}
+\input{sections/approach_2}
+\input{sections/conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{acmart}
+
+\end{document}
+
