@@ -11,6 +11,18 @@
 \usepackage{xcolor}  % 색상 지정용 (선택)
 \usepackage[skip=5pt]{caption}  % skip 값으로 caption과 표 간의 간격 조정
 \setlength{\belowcaptionskip}{0pt} % 표와 본문 간격 줄이기
+% 표 or listing 과 본문 사이 간격 조절
+\captionsetup[table]{skip=3pt}       % 표 내부 캡션 간격
+\setlength{\abovecaptionskip}{3pt}   % 캡션 위 간격
+\setlength{\belowcaptionskip}{3pt}   % 캡션 아래 간격
+\setlength{\textfloatsep}{3pt}       % 본문과 float(listing/table) 사이 간격
+\setlength{\floatsep}{4pt}           % float와 float 사이 간격
+\setlength{\intextsep}{3pt}          % 본문 중간에 들어가는 float와 본문 사이 간격
+
+\PassOptionsToPackage{colorlinks=true, linkcolor=blue}{hyperref}
+\usepackage{hyperref}
+\newcommand{\listingname}{Listing} % (필요 시 한글로도 가능)
+\def\lstlistingautorefname{\listingname}
 
 
 \begin{document}
