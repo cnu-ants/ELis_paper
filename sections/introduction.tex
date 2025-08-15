@@ -1,6 +1,6 @@
 \section{Introduction}
 Static analysis of binaries is inherently challenging because the compilation
-process discards most high-level program information, such as variable and
+process discards most high-level program information\cite{compiler-level-ir}, such as variable and
 function names, type definitions, and source-level control structures. Binary
 lifters translate binaries into an intermediate representation (IR) to address
 this limitation, and they have consequently attracted significant attention.
@@ -12,7 +12,7 @@ capabilities. However, binary lifters do not always generate IR that is equally
 suitable for program analysis. In general, binary lifters produce two distinct
 styles of IR: high-level IR (HIR) and emulation-style IR (EIR). 
 
-A recent study evaluated four LLVM IR based binary lifters. In that study, each
+A recent study evaluated four LLVM IR based binary lifters\cite{snp-sok}. In that study, each
 binary was lifted by all four tools and evaluated in terms of analysis
 suitability and functional correctness. The results varied significantly
 depending on the IR style. HIR demonstrated strong analysis suitability but
@@ -52,12 +52,12 @@ define i32 @Func_main(i32 %arg_esp) {
 \label{lst:eir}
 \end{listing}
 
-As shown in \autoref{lst:hir} and \autoref{lst:eir}, EIR emulates machine code more closely through the use of a
-virtual stack, while HIR preserves more semantic information such as type
-annotations and explicit local variables. Because the virtual stack mimics
-program behavior, EIR preserves functional correctness effectively. However,
-the absence of explicit variables and other high-level information reduces its
-suitability for analysis.
+As shown in \autoref{lst:hir} and \autoref{lst:eir}, EIR emulates machine code
+more closely through the use of a virtual stack, while HIR preserves more
+semantic information such as type annotations and explicit local variables.
+Because the virtual stack mimics program behavior, EIR preserves functional
+correctness effectively. However, the absence of explicit variables and other
+high-level information reduces its suitability for analysis.
 
 In this study, we propose a method for transforming EIR into HIR. Although EIR
 preserves program semantics well due to its emulated stack, this same structure
@@ -66,6 +66,7 @@ eliminate the virtual stack in EIR and transform the code into HIR while
 preserving semantics, thereby combining the functional correctness of EIR with
 the analysis suitability of HIR.
 
-For this purpose, we selected BinRec, a dynamic lifter, to generate EIR for
-transformation. We suggest two methods: 1) Variable recover, 2) Recovery of
-types
+For this purpose, we selected BinRec\cite{euro-binrec}, a dynamic lifter, to
+generate EIR for transformation. We suggest two methods: 1) Variable recover,
+2) Recovery of types
+
